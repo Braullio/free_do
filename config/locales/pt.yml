@@ -1,0 +1,30 @@
+# I18n.t 'errors.messages.greater_than_or_equal_to', :count => 16
+# => "deve ser maior ou igual a 16"
+
+# I18n.l Date.today, :format => :long
+# => "06 de Abril de 2019"
+
+# I18n.t 'datetime.distance_in_words.about_x_hours.one'
+# => "aproximadamente 1 hora"
+
+# I18n.t 'datetime.distance_in_words.about_x_hours.other', :count => 16
+# => "aproximadamente 16 horas"
+
+pt:
+  project:
+    title: "Free Do"
+  controller:
+    board: "Boards"
+    list: "Listas"
+    card: "Card"
+  messages:
+    success:
+      create: "O %{value} foi criado com sucesso"
+      update: "O %{value} foi atualizado com sucesso"
+      remove: "O %{value} foi removido com sucesso"
+    error:
+      create: "O %{value} não foi criado com sucesso"
+      update: "O %{value} não foi atualizado com sucesso"
+      remove: "O %{value} não foi removido com sucesso"
+    alert:
+      remove: "Tem certeza que quer deletar o %{value} ?"
