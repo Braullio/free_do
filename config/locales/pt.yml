@@ -18,6 +18,8 @@ pt:
     list: "Listas"
     card: "Card"
   messages:
+    project:
+      index: "Projetos disponiveis"
     success:
       create: "O %{value} foi criado com sucesso"
       update: "O %{value} foi atualizado com sucesso"
