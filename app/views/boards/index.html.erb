@@ -1,3 +1,5 @@
+<%= render 'partial/new_board'%>
+
 <div class="boards-page-board-section mod-no-sidebar">
   <div class="boards-page-board-section-header">
     <div class="boards-page-board-section-header-icon">
@@ -20,12 +22,14 @@
       </li>
     <% end %>
     <li class="boards-page-board-section-list-item">
+      <a data-toggle="modal" data-target="#modal_new_board">
       <div class="board-tile mod-add">
         <span class="board-tile-fade"></span>
         <div class="board-tile-details-name">
           <%= link_to (t 'messages.project.add'), boards_path %>
         </div>
       </div>
+    </a>
     </li>
   </ul>
 </div>
