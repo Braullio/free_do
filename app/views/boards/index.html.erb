@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="https://a.trellocdn.com/prgb/dist/core.b947ac1236a9f34bf854.css">
 <div class="boards-page-board-section mod-no-sidebar">
   <div class="boards-page-board-section-header">
     <div class="boards-page-board-section-header-icon">
@@ -9,7 +8,7 @@
   <ul class="boards-page-board-section-list">
     <% @boards.each do |board| %>
       <li class="boards-page-board-section-list-item">
-        <a class="board-tile" href="<%=board_path(board)%>" style="background-color: #0087e0;">
+        <a class="board-tile" href="<%=board_path(board)%>">
           <span class="board-tile-fade"></span>
           <div class="board-tile-details is-badged">
             <div class="board-tile-details-name">
@@ -21,10 +20,10 @@
       </li>
     <% end %>
     <li class="boards-page-board-section-list-item">
-      <div class="board-tile mod-add" style="background-color: #7ae742;">
+      <div class="board-tile mod-add">
         <span class="board-tile-fade"></span>
         <div class="board-tile-details-name">
-          <%= link_to 'New Board', boards_path %>
+          <%= link_to (t 'messages.project.add'), boards_path %>
         </div>
       </div>
     </li>
