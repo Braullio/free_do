@@ -16,9 +16,10 @@ pt:
   field:
     title:       "Titulo do Projeto"
     description: "Descrição do Projeto"
+    save:        "Criar"
   controller:
-    board: "Boards"
-    list:  "Listas"
+    board: "Projeto"
+    list:  "Lista"
     card:  "Card"
   messages:
     project:
