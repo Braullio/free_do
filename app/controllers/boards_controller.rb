@@ -1,35 +1,35 @@
 class BoardsController < ApplicationController
   before_action :set_board, only: %i[update destroy show]
   before_action :all_borads, only: %i[index]
+  before_action :board_params, only: %i[create update]
 
   def index; end
 
   def show; end
 
   def create
-    params.require(:description)
-    @board = Board.new(description: params[:description])
+    @board = Board.new(@board_send)
     if @board.save
       flash[:success] = (t 'messages.success.create', :value => (t 'controller.board'))
-      root_path
+      redirect_to root_path
     else
-      root_path
+      redirect_to root_path
     end
   end
 
   def update
     if @board.update(board_params)
       flash[:success] = (t 'messages.success.update', :value => (t 'controller.board'))
-      root_path
+      redirect_to root_path
     else
-      root_path
+      redirect_to root_path
     end
   end
 
   def destroy
     @board.destroy
     flash[:success] = (t 'messages.success.remove', :value => (t 'controller.board'))
-    root_path
+    redirect_to root_path
   end
 
   private
@@ -42,6 +42,6 @@ class BoardsController < ApplicationController
   end
 
   def board_params
-    params.require(:board).permit(:description)
+    @board_send = params.permit(:title, :description)
   end
 end
