@@ -13,10 +13,13 @@
 pt:
   project:
     title: "Free Do"
+  field:
+    title:       "Titulo do Projeto"
+    description: "Descrição do Projeto"
   controller:
     board: "Boards"
-    list: "Listas"
-    card: "Card"
+    list:  "Listas"
+    card:  "Card"
   messages:
     project:
       index: "Projetos disponiveis"
