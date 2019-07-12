@@ -20,6 +20,7 @@ pt:
   messages:
     project:
       index: "Projetos disponiveis"
+      add:   "Criar novo projeto"
     success:
       create: "O %{value} foi criado com sucesso"
       update: "O %{value} foi atualizado com sucesso"
