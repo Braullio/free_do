@@ -16,7 +16,7 @@ pt:
   field:
     title:       "Titulo do Projeto"
     description: "Descrição do Projeto"
-    save:        "Criar"
+    save:        "Salvar"
   controller:
     board: "Projeto"
     list:  "Lista"
