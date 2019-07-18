@@ -1,0 +1,41 @@
+<% check_action_board %>
+<div class="modal fade" id="modal_board" tabindex="-1" role="dialog" aria-labelledby="modal_board" aria-hidden="true">
+  <div class="modal-dialog modal-ml" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          <%= t 'messages.project.add'%>
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_tag({controller: "boards", action: @action }, method: @method, :id=> 'form_board') do %>
+          <div class="form-row">
+            <div class="form-group">
+              <small class="margin01"><%= t "field.title"%></small>
+              <span>
+                <%= text_field_tag :title , @title , :maxlength => 20 , class: 'form-control' , :required => true %>
+              </span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <small class="margin01"><%= t "field.description"%></small>
+              <span>
+                <%= text_area_tag :description , @description , rows: 2, cols: 50, :maxlength => 75 , class: 'form-control' %>
+              </span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-12">
+                <span><%= link_to t("field.save"), nil, :onclick=>"document.getElementById('form_board').submit()" ,class: "btn btn-success" %></span>
+                <span><%=link_to (t 'field.del'), @board, method: :delete, data: { confirm: (t 'messages.alert.remove', :value => "#{@title}")}, class: "btn btn-danger" %></span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
