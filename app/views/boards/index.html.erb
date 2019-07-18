@@ -1,5 +1,3 @@
-<%= render 'partial/new_board'%>
-
 <div class="boards-page-board-section mod-no-sidebar">
   <div class="boards-page-board-section-header">
     <div class="boards-page-board-section-header-icon">
@@ -9,27 +7,27 @@
   </div>
   <ul class="boards-page-board-section-list">
     <% @boards.each do |board| %>
-      <li class="boards-page-board-section-list-item">
-        <a class="board-tile" href="<%=board_path(board)%>">
-          <span class="board-tile-fade"></span>
-          <div class="board-tile-details is-badged">
-            <div class="board-tile-details-name">
-              <%= board.title %>
-            </div>
-            <p><%= board.description %></p>
+    <li class="boards-page-board-section-list-item">
+      <a class="board-tile" href="<%=board_path(board)%>">
+        <span class="board-tile-fade"></span>
+        <div class="board-tile-details is-badged">
+          <div class="board-tile-details-name">
+            <%= board.title %>
           </div>
-        </a>
-      </li>
+          <p><%= board.description %></p>
+        </div>
+      </a>
+    </li>
     <% end %>
     <li class="boards-page-board-section-list-item">
-      <a data-toggle="modal" data-target="#modal_new_board">
-      <div class="board-tile mod-add">
-        <span class="board-tile-fade"></span>
-        <div class="board-tile-details-name">
-          <%= link_to (t 'messages.project.add'), boards_path %>
+      <a data-toggle="modal" data-target="#modal_board">
+        <div class="board-tile mod-add">
+          <span class="board-tile-fade"></span>
+          <div class="board-tile-details-name">
+            <%= link_to (t 'messages.project.add'), boards_path %>
+          </div>
         </div>
-      </div>
-    </a>
+      </a>
     </li>
   </ul>
 </div>
