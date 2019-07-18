@@ -11,3 +11,14 @@
   30%{top: 0px; opacity: 1}
   100%{top: 0px; opacity: 1}
 }
+.list-title{
+  overflow: hidden;
+  overflow-wrap: break-word;
+  height: 28px;
+}
+.back-green{
+  color: #FFFFFF !important;
+  font-weight: bold;
+  background-color: #28a745;
+  border-color: #28a745;
+}
