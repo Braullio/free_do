@@ -17,6 +17,7 @@ pt:
     title:       "Titulo do Projeto"
     description: "Descrição do Projeto"
     save:        "Salvar"
+    del:         "Deletar"
   controller:
     board: "Projeto"
     list:  "Lista"
