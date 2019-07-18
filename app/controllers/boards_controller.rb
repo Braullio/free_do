@@ -20,9 +20,9 @@ class BoardsController < ApplicationController
   def update
     if @board.update(board_params)
       flash[:success] = (t 'messages.success.update', :value => (t 'controller.board'))
-      redirect_to root_path
+      redirect_to_back
     else
-      redirect_to root_path
+      redirect_to_back
     end
   end
 
