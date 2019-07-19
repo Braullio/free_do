@@ -1,0 +1,37 @@
+<div class="modal fade" id="modal_list" tabindex="-1" role="dialog" aria-labelledby="modal_list" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          <%= t 'messages.project.add', :value => (t 'controller.list') %>
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_tag({controller: "lists", action: "update" }, method: "patch") do %>
+        <div class="form-row">
+          <div class="form-group">
+            <small class="margin01"><%= t "field.title"%></small>
+            <span>
+              <%= text_field_tag :name , nil , :maxlength => 20 , class: 'form-control' , :autocomplete => :off, :required => true %>
+              <%= hidden_field_tag :board_id %>
+              <%= hidden_field_tag :list_id %>
+            </span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <%= button_tag (t 'field.save'), class: "btn btn-block btn-success" %>
+            <% end %>
+            <%= form_tag({controller: "lists", action: "destroy" }, method: "delete") do %>
+            <%= hidden_field_tag "list_id_del", @board.id %>
+            <%= button_tag (t 'field.del'), class: "btn btn-danger btn-block" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
