@@ -2,6 +2,7 @@ class BoardsController < ApplicationController
   before_action :set_board, only: %i[update destroy show]
   before_action :all_borads, only: %i[index]
   before_action :board_params, only: %i[create update]
+  before_action :all_lists_for_board, only: %i[show]
 
   def index; end
 
@@ -13,6 +14,7 @@ class BoardsController < ApplicationController
       flash[:success] = (t 'messages.success.create', :value => (t 'controller.board'))
       redirect_to root_path
     else
+      flash[:danger] = (t 'messages.error.create', :value => (t 'controller.board'))
       redirect_to root_path
     end
   end
@@ -22,14 +24,19 @@ class BoardsController < ApplicationController
       flash[:success] = (t 'messages.success.update', :value => (t 'controller.board'))
       redirect_to_back
     else
+      flash[:danger] = (t 'messages.error.update', :value => (t 'controller.board'))
       redirect_to_back
     end
   end
 
   def destroy
-    @board.destroy
-    flash[:success] = (t 'messages.success.remove', :value => (t 'controller.board'))
-    redirect_to root_path
+    if @board.destroy
+      flash[:success] = (t 'messages.success.remove', :value => (t 'controller.board'))
+      redirect_to root_path
+    else
+      flash[:danger] = (t 'messages.error.remove', :value => (t 'controller.board'))
+      redirect_to root_path
+    end
   end
 
   private
@@ -39,6 +46,10 @@ class BoardsController < ApplicationController
 
   def all_borads
     @boards = Board.all
+  end
+
+  def all_lists_for_board
+    @all_lists_for_board = List.where(board_id: @board)
   end
 
   def board_params
