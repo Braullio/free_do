@@ -4,7 +4,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-          <%= t 'messages.project.add'%>
+          <%= t 'messages.project.add', :value => (t 'controller.board') %>
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -16,7 +16,7 @@
             <div class="form-group">
               <small class="margin01"><%= t "field.title"%></small>
               <span>
-                <%= text_field_tag :title , @title , :maxlength => 20 , class: 'form-control' , :required => true %>
+                <%= text_field_tag :title , @title , :maxlength => 20 , class: 'form-control' , :autocomplete => :off, :required => true %>
               </span>
             </div>
           </div>
