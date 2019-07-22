@@ -13,9 +13,9 @@
         <%= form_tag({controller: "lists", action: "update" }, method: "patch") do %>
         <div class="form-row">
           <div class="form-group">
-            <small class="margin01"><%= t "field.title"%></small>
+            <small class="margin01"><%= t "field.title", :value => (t 'controller.list')%></small>
             <span>
-              <%= text_field_tag :name , nil , :maxlength => 20 , class: 'form-control' , :autocomplete => :off, :required => true %>
+              <%= text_field_tag :title , nil , :maxlength => 20 , class: 'form-control' , :autocomplete => :off, :required => true %>
               <%= hidden_field_tag :board_id %>
               <%= hidden_field_tag :list_id %>
             </span>
