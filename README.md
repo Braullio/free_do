@@ -14,3 +14,6 @@ Duty is to be played running on AWS (Free Tier) with all code on Github.
   - rspec, faker, factory_bot_rails
   - RDS Aurora
   - Elastic Beanstalk
+
+## Heroku
+https://free-do-trello.herokuapp.com/
