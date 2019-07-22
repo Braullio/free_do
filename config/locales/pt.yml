@@ -14,8 +14,8 @@ pt:
   project:
     title: "Free Do"
   field:
-    title:       "Titulo do Projeto"
-    description: "Descrição do Projeto"
+    title:       "Titulo do %{value}"
+    description: "Descrição do %{value}"
     save:        "Salvar"
     del:         "Deletar"
   controller:
