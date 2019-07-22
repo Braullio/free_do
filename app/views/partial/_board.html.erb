@@ -14,7 +14,7 @@
         <%= form_tag({controller: "boards", action: @action }, method: @method, :id=> 'form_board') do %>
           <div class="form-row">
             <div class="form-group">
-              <small class="margin01"><%= t "field.title"%></small>
+              <small class="margin01"><%= t "field.title", :value => (t 'controller.board')%></small>
               <span>
                 <%= text_field_tag :title , @title , :maxlength => 20 , class: 'form-control' , :autocomplete => :off, :required => true %>
               </span>
@@ -22,7 +22,7 @@
           </div>
           <div class="form-row">
             <div class="form-group">
-              <small class="margin01"><%= t "field.description"%></small>
+              <small class="margin01"><%= t "field.description", :value => (t 'controller.board')%></small>
               <span>
                 <%= text_area_tag :description , @description , rows: 2, cols: 50, :maxlength => 75 , class: 'form-control' %>
               </span>
