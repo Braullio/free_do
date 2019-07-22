@@ -43,6 +43,6 @@ class ListsController < ApplicationController
   end
 
   def list_params
-    @list_send = params.permit(:name, :board_id)
+    @list_send = params.permit(:title, :board_id)
   end
 end
