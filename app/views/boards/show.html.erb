@@ -1,16 +1,8 @@
-<%=render 'partial/list' %>
-<script type="text/javascript">
-  $('#modal_list').on('show.bs.modal', function(e) {
-    var listId = $(e.relatedTarget).data('list-id');
-    $(e.currentTarget).find('input[name="list_id"]').val(listId);
-    var listId = $(e.relatedTarget).data('list-id');
-    $(e.currentTarget).find('input[name="list_id_del"]').val(listId);
-    var listName = $(e.relatedTarget).data('list-name');
-    $(e.currentTarget).find('input[name="name"]').val(listName);
-    var boardId = $(e.relatedTarget).data('list-board-id');
-    $(e.currentTarget).find('input[name="board_id"]').val(boardId);
-  });
-</script>
+<%= render 'partial/list' %>
+<%= render 'partial/card' %>
+<%= render 'partial/card_new' %>
+<%= javascript_include_tag "lists" %>
+<%= javascript_include_tag "cards" %>
 <% @color = "#0087e0" %>
 <div class="board-main-content">
   <div class="board-header u-clearfix js-board-header">
@@ -36,33 +28,32 @@
   <div class="board-canvas">
     <div id="board" class="u-fancy-scrollbar js-no-higher-edits js-list-sortable ui-sortable">
       <% @all_lists_for_board.each do |list| %>
+      <% @list = list %>
+      <% all_cards_for_lists %>
       <div class="js-list list-wrapper">
         <div class="list js-list-content">
 
           <div class="list-header js-list-header u-clearfix is-menu-shown">
             <div class="list-header-target js-editing-target"></div>
-            <textarea class="list-header-name mod-list-name js-list-name-input list-title"><%= list.name %></textarea>
+            <textarea class="list-header-name mod-list-name js-list-name-input list-title"><%= list.title %></textarea>
             <div class="list-header-extras">
-              <a data-toggle="modal" href="#modal_list" data-target="#modal_list" data-list-id="<%= list.id %>" data-list-board-id="<%= @board.id %>" data-list-name="<%= list.name %>" class="btn">
+              <a data-toggle="modal" href="#modal_list" data-target="#modal_list" data-list-id="<%= list.id %>" data-list-board-id="<%= @board.id %>" data-list-name="<%= list.title %>" class="btn">
                 <i class="fa fa-cog"></i>
               </a>
             </div>
           </div>
-
+          <% @all_cards.each do |card| %>
           <div class="list-cards u-fancy-scrollbar u-clearfix js-list-cards js-sortable ui-sortable">
-            <a class="list-card js-member-droppable ui-droppable" href="">
+            <a data-toggle="modal" href="#modal_card" data-target="#modal_card" data-list-id="<%= list.id %>" data-card-id="<%= card.id %>" data-card-title="<%= card.title %>" data-card-description="<%= card.description %>" class="list-card js-member-droppable ui-droppable" href="">
               <div class="list-card-details js-card-details">
                 <span class="list-card-title js-card-name" dir="auto">
-                  gg
+                  <%= card.title %>
                 </span>
-                <div class="badges">
-                  sssssssssssssssssss
-                </div>
               </div>
             </a>
           </div>
-          <!-- fim do each -->
-          <a class="open-card-composer js-open-card-composer" data-toggle="modal" data-target="#modal_card">
+          <%end%>
+          <a class="open-card-composer js-open-card-composer" data-toggle="modal" data-list-id="<%= list.id %>" data-target="#modal_card_new">
             <span class="icon-sm icon-add"></span>
             <span class="js-add-another-card">Adicionar outro cartão</span>
           </a>
@@ -70,8 +61,9 @@
       </div>
       <%end%>
       <div class="js-add-list list-wrapper mod-add">
+        <%= t 'messages.project.add', :value => (t 'controller.list')%>
         <%= form_tag({controller: "lists", action: "create" }, method: "post", :id=> "form_list") do %>
-        <%= text_field_tag "name", nil , :maxlength => 20,  class: "list-name-input" , :autocomplete => :off,:required => true %>
+        <%= text_field_tag "title", nil , :maxlength => 20,  class: "list-name-input" , :autocomplete => :off, :required => true %>
         <%= hidden_field_tag "board_id", @board.id %>
         <%= button_tag (t 'field.save'), class: "btn btn-success" %>
         <% end %>
