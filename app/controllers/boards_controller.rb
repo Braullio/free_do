@@ -2,7 +2,7 @@ class BoardsController < ApplicationController
   before_action :set_board, only: %i[update destroy show]
   before_action :all_borads, only: %i[index]
   before_action :board_params, only: %i[create update]
-  before_action :all_lists_for_board, only: %i[show]
+  before_action :all_lists_for_board , only: %i[show]
 
   def index; end
 
