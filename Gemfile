@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.3'
+ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
@@ -27,12 +27,12 @@ gem 'jbuilder', '~> 2.5'
 gem 'i18n', '~> 0.7.0'
 # Faker, a port of Data::Faker from Perl, is used to easily generate fake data: names, addresses, phone numbers, etc.
 gem 'faker', '~> 1.6', '>= 1.6.6'
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem 'mysql2', '>= 0.4.4', '< 0.6.0'
+
 group :development, :test do
-  gem 'mysql2', '>= 0.4.4', '< 0.6.0'
   gem 'rspec-rails', '3.8'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
