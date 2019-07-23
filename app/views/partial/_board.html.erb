@@ -30,11 +30,16 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-12">
-                <span><%= link_to t("field.save"), nil, :onclick=>"document.getElementById('form_board').submit()" ,class: "btn btn-success" %></span>
-                <span><%=link_to (t 'field.del'), @board, method: :delete, data: { confirm: (t 'messages.alert.remove', :value => "#{@title}")}, class: "btn btn-danger" %></span>
+                <span><%= button_tag (t 'field.save'), class: "btn btn-block btn-success" %></span>
+                <% end %>
+                <% if @action == "update" %>
+                  <%= form_tag({controller: "boards", action: "destroy" }, method: "delete") do %>
+                      <%= hidden_field_tag "id", @board.id %>
+                    <%= button_tag (t 'field.del'), class: "btn btn-danger btn-block" %>
+                  <% end %>
+                <% end %>
             </div>
           </div>
-        <% end %>
       </div>
     </div>
   </div>
