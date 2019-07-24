@@ -9,11 +9,11 @@ RSpec.describe BoardsController, type: :controller do
     skip("Add a hash of attributes invalid for your model")
   }
 
+  let(:board) { Board.create( title: Faker::FunnyName.name , description: Faker::Lorem.sentence) }
   let(:valid_session) { {} }
 
   describe "GET #index" do
     it "returns a success response" do
-      Board.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
     end
@@ -21,15 +21,7 @@ RSpec.describe BoardsController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      board = Board.create! valid_attributes
-      get :show, params: {id: board.to_param}, session: valid_session
-      expect(response).to be_successful
-    end
-  end
-
-  describe "GET #new" do
-    it "returns a success response" do
-      get :new, params: {}, session: valid_session
+      get :show, params: {id: board.id}, session: valid_session
       expect(response).to be_successful
     end
   end
@@ -38,20 +30,21 @@ RSpec.describe BoardsController, type: :controller do
     context "with valid params" do
       it "creates a new Board" do
         expect {
-          post :create, params: {board: valid_attributes}, session: valid_session
+          post :create, params: {title: Faker::FunnyName.name}, session: valid_session
         }.to change(Board, :count).by(1)
       end
 
       it "redirects to the created board" do
-        post :create, params: {board: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Board.last)
+        post :create, params: {title: Faker::FunnyName.name}, session: valid_session
+        expect(response).to redirect_to(root_path)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {board: invalid_attributes}, session: valid_session
-        expect(response).to be_successful
+        expect{
+          put :create, params: {}, session: valid_session
+        }.to raise_error(ActiveRecord::StatementInvalid)
       end
     end
   end
@@ -63,40 +56,34 @@ RSpec.describe BoardsController, type: :controller do
       }
 
       it "updates the requested board" do
-        board = Board.create! valid_attributes
-        put :update, params: {id: board.to_param, board: new_attributes}, session: valid_session
-        board.reload
-        skip("Add assertions for updated state")
+        put :update, params: {id: board.id, title: Faker::FunnyName.name}, session: valid_session
+        expect(Board.count).to eq(1)
       end
 
       it "redirects to the board" do
-        board = Board.create! valid_attributes
-        put :update, params: {id: board.to_param, board: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(board)
+        put :update, params: {id: board.id, title: Faker::FunnyName.name}, session: valid_session
+        expect(response).to redirect_to(root_path)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        board = Board.create! valid_attributes
-        put :update, params: {id: board.to_param, board: invalid_attributes}, session: valid_session
-        expect(response).to be_successful
+        expect{
+          put :create, params: {}, session: valid_session
+        }.to raise_error(ActiveRecord::StatementInvalid)
       end
     end
   end
 
   describe "DELETE #destroy" do
     it "destroys the requested board" do
-      board = Board.create! valid_attributes
-      expect {
-        delete :destroy, params: {id: board.to_param}, session: valid_session
-      }.to change(Board, :count).by(-1)
+      delete :destroy, params: {id: board.id}, session: valid_session
+      expect(Board.count).to eq(0)
     end
 
     it "redirects to the boards list" do
-      board = Board.create! valid_attributes
-      delete :destroy, params: {id: board.to_param}, session: valid_session
-      expect(response).to redirect_to(boards_url)
+      delete :destroy, params: {id: board.id}, session: valid_session
+      expect(response).to redirect_to(root_path)
     end
   end
 end
