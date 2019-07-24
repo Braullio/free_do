@@ -43,7 +43,7 @@ RSpec.describe BoardsController, type: :controller do
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
         expect{
-          put :create, params: {}, session: valid_session
+          post :create, params: {}, session: valid_session
         }.to raise_error(ActiveRecord::StatementInvalid)
       end
     end
@@ -56,12 +56,12 @@ RSpec.describe BoardsController, type: :controller do
       }
 
       it "updates the requested board" do
-        put :update, params: {id: board.id, title: Faker::FunnyName.name}, session: valid_session
+        patch :update, params: {id: board.id, title: Faker::FunnyName.name}, session: valid_session
         expect(Board.count).to eq(1)
       end
 
       it "redirects to the board" do
-        put :update, params: {id: board.id, title: Faker::FunnyName.name}, session: valid_session
+        patch :update, params: {id: board.id, title: Faker::FunnyName.name}, session: valid_session
         expect(response).to redirect_to(root_path)
       end
     end
