@@ -10,25 +10,30 @@ RSpec.describe ListsController, type: :controller do
   }
 
   let(:valid_session) { {} }
+  let(:board) { Board.create( title: Faker::FunnyName.name , description: Faker::Lorem.sentence) }
+  let(:list)  { List.create( title: Faker::FunnyName.name , board_id: board.id) }
 
   describe "POST #create" do
     context "with valid params" do
       it "creates a new List" do
         expect {
-          post :create, params: {card: valid_attributes}, session: valid_session
+          post :create, params: {title: Faker::FunnyName.name, list_id: list.id}, session: valid_session
         }.to change(List, :count).by(1)
-      end
-
-      it "redirects to the created card" do
-        post :create, params: {card: valid_attributes}, session: valid_session
-        expect(Board.count).to redirect_to(List.last)
+        expect(Board.count).to eq(1)
       end
     end
 
     context "with invalid params" do
-      it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {card: invalid_attributes}, session: valid_session
-        expect(response).to be_successful
+      it "not informad title" do
+        expect{
+          put :create, params: {board_id: board.id}, session: valid_session
+        }.to raise_error(ActiveRecord::StatementInvalid)
+      end
+
+      it "not informad list_id" do
+        expect{
+          put :create, params: {title: Faker::FunnyName.name}, session: valid_session
+        }.to change(Board, :count).by(0)
       end
     end
   end
