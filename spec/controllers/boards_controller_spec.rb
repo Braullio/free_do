@@ -1,8 +1,6 @@
 require 'rails_helper'
 
-
 RSpec.describe BoardsController, type: :controller do
-
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
   }
@@ -101,5 +99,4 @@ RSpec.describe BoardsController, type: :controller do
       expect(response).to redirect_to(boards_url)
     end
   end
-
 end
